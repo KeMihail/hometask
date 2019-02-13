@@ -1,6 +1,7 @@
 package com.epam.spring.hometask.domain;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.NavigableSet;
 import java.util.Objects;
 import java.util.TreeSet;
@@ -8,9 +9,11 @@ import java.util.TreeSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -32,8 +35,21 @@ public class Event extends DomainObject
 	@ManyToOne
 	private Auditorium auditorium;
 
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Collection<Ticket> tickets;
+
 	public Event()
 	{
+	}
+
+	public void setTickets(final Collection<Ticket> tickets)
+	{
+		this.tickets = tickets;
+	}
+
+	public Collection<Ticket> getTickets()
+	{
+		return tickets;
 	}
 
 	public void setAuditorium(final Auditorium auditorium)
