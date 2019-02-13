@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -18,6 +20,7 @@ import com.epam.spring.hometask.domain.User;
 public class TicketDaoImpl implements TicketDao
 {
 	final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+	static final Logger rootLogger = LogManager.getRootLogger();
 
 	@Override
 	public Ticket save(final Ticket object)
@@ -33,7 +36,7 @@ public class TicketDaoImpl implements TicketDao
 		}
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			rootLogger.error(e.getMessage());
 		}
 		finally
 		{
@@ -60,7 +63,7 @@ public class TicketDaoImpl implements TicketDao
 		}
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			rootLogger.error(e.getMessage());
 		}
 		finally
 		{
@@ -85,7 +88,7 @@ public class TicketDaoImpl implements TicketDao
 		}
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			rootLogger.error(e.getMessage());
 		}
 		finally
 		{
@@ -111,7 +114,7 @@ public class TicketDaoImpl implements TicketDao
 		}
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			rootLogger.error(e.getMessage());
 		}
 		finally
 		{
@@ -139,7 +142,7 @@ public class TicketDaoImpl implements TicketDao
 		}
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			rootLogger.error(e.getMessage());
 		}
 		finally
 		{

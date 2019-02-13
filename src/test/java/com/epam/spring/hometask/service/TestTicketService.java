@@ -19,6 +19,7 @@ import com.epam.spring.hometask.domain.User;
 @ContextConfiguration("classpath:spring/context.xml")
 public class TestTicketService
 {
+
 	@Autowired
 	private TicketService service;
 	@Autowired
@@ -43,6 +44,7 @@ public class TestTicketService
 	@Before
 	public void setUp()
 	{
+
 		count_ticket = service.getAll().size();
 
 		event = new Event();
@@ -102,5 +104,6 @@ public class TestTicketService
 	{
 		user_service.remove(user);
 		event_service.remove(event);
+		rootLogger.info("method tearDown");
 	}
 }

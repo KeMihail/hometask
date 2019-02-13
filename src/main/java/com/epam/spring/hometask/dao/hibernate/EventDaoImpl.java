@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import javax.persistence.TypedQuery;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,6 +18,7 @@ import com.epam.spring.hometask.domain.Event;
 public class EventDaoImpl implements EventDao
 {
 	final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+	static final Logger rootLogger = LogManager.getRootLogger();
 
 	@Override
 	public Collection<Event> getByName(final String name)
@@ -33,7 +36,7 @@ public class EventDaoImpl implements EventDao
 		}
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			rootLogger.error(e.getMessage());
 		}
 		finally
 		{
@@ -60,7 +63,7 @@ public class EventDaoImpl implements EventDao
 		}
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			rootLogger.error(e.getMessage());
 		}
 		finally
 		{
@@ -87,7 +90,7 @@ public class EventDaoImpl implements EventDao
 		}
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			rootLogger.error(e.getMessage());
 		}
 		finally
 		{
@@ -112,7 +115,7 @@ public class EventDaoImpl implements EventDao
 		}
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			rootLogger.error(e.getMessage());
 		}
 		finally
 		{
@@ -140,7 +143,7 @@ public class EventDaoImpl implements EventDao
 		}
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			rootLogger.error(e.getMessage());
 		}
 		finally
 		{
@@ -168,7 +171,7 @@ public class EventDaoImpl implements EventDao
 		}
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			rootLogger.error(e.getMessage());
 		}
 		finally
 		{
