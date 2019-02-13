@@ -12,7 +12,7 @@ import com.epam.spring.hometask.service.UserService;
 
 public class UserServiceImpl implements UserService
 {
-	@Resource(name = "userDaoJPA")
+	@Resource(name = "userDaoImpl")
 	private UserDao dao;
 
 	@Override
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService
 		}
 		else
 		{
-			object.setId(dao.save(object).getId());
+			dao.save(object);
 		}
 
 		return object;
