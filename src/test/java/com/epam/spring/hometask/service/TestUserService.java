@@ -1,7 +1,12 @@
 package com.epam.spring.hometask.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Arrays;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -32,7 +37,6 @@ public class TestUserService
 
 	private static Integer count_user;
 
-
 	@Before
 	public void setUp()
 	{
@@ -42,6 +46,7 @@ public class TestUserService
 		source.setFirstName(USER_FIRST_NAME);
 		source.setLastName(USER_LAST_NAME);
 		source.setEmail(USER_EMAIL);
+		source.setCreated(LocalDateTime.of(LocalDate.now(), LocalTime.now().withNano(0)));
 
 		service.save(source);
 	}
@@ -58,6 +63,7 @@ public class TestUserService
 		Assert.assertEquals(target.getEmail(), source.getEmail());
 		Assert.assertEquals(target.getFirstName(), source.getFirstName());
 		Assert.assertEquals(target.getLastName(), source.getLastName());
+		Assert.assertEquals(target.getCreated(), source.getCreated());
 
 		// update:
 		source.setEmail(USER_EMAIL_);
@@ -71,6 +77,8 @@ public class TestUserService
 		Assert.assertEquals(target.getEmail(), source.getEmail());
 		Assert.assertEquals(target.getFirstName(), source.getFirstName());
 		Assert.assertEquals(target.getLastName(), source.getLastName());
+		Assert.assertEquals(target.getCreated(), source.getCreated());
+		Assert.assertEquals(target.getModified(), source.getModified());
 
 		// getUserByEmail:
 		target = service.getUserByEmail(USER_EMAIL_);

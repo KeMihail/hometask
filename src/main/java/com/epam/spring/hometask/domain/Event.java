@@ -31,6 +31,10 @@ public class Event extends DomainObject
 	private double basePrice;
 	@Column
 	private EventRating rating;
+	@Column
+	private LocalDateTime created;
+	@Column
+	private LocalDateTime modified;
 
 	@ManyToOne
 	private Auditorium auditorium;
@@ -40,6 +44,26 @@ public class Event extends DomainObject
 
 	public Event()
 	{
+	}
+
+	public LocalDateTime getCreated()
+	{
+		return created;
+	}
+
+	public LocalDateTime getModified()
+	{
+		return modified;
+	}
+
+	public void setCreated(final LocalDateTime created)
+	{
+		this.created = created;
+	}
+
+	public void setModified(final LocalDateTime modified)
+	{
+		this.modified = modified;
 	}
 
 	public void setTickets(final Collection<Ticket> tickets)

@@ -1,5 +1,6 @@
 package com.epam.spring.hometask.domain;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -27,11 +28,38 @@ public class User extends DomainObject
 	private String lastName;
 	@Column
 	private String email;
+
+	@Column
+	private LocalDateTime created;
+
+	@Column
+	private LocalDateTime modified;
+
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	List<Ticket> tickets;
 
 	public User()
 	{
+	}
+
+	public void setCreated(final LocalDateTime created)
+	{
+		this.created = created;
+	}
+
+	public void setModified(final LocalDateTime modified)
+	{
+		this.modified = modified;
+	}
+
+	public LocalDateTime getCreated()
+	{
+		return created;
+	}
+
+	public LocalDateTime getModified()
+	{
+		return modified;
 	}
 
 	public void setTickets(final List<Ticket> tickets)

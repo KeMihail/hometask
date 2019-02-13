@@ -2,6 +2,7 @@ CREATE TABLE `Auditorium` (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`name` varchar(100),
 	`numberOfSeats` int,
+	`created` TIMESTAMP NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
@@ -9,8 +10,10 @@ CREATE TABLE `Event` (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`name` varchar(100),
 	`basePrice` double,
-	`rating_id` int,
+	`rating` varchar(100),
 	`auditorium_id` int,
+	`created` TIMESTAMP NOT NULL,
+	`modified` TIMESTAMP,
 	PRIMARY KEY (`id`)
 );
 
@@ -24,7 +27,9 @@ CREATE TABLE `Ticket` (
 	`id` int NOT NULL AUTO_INCREMENT,
 	`seat` int,
 	`event_id` int,
-	`user_id` int NOT NULL,
+	`user_id` int,
+	`created` TIMESTAMP,
+	`modified` TIMESTAMP,
 	PRIMARY KEY (`id`)
 );
 
@@ -33,12 +38,12 @@ CREATE TABLE `User` (
 	`firstName` varchar(200),
 	`lastName` varchar(200),
 	`email` varchar(200),
+	`created` TIMESTAMP,
+	`modified` TIMESTAMP,
 	PRIMARY KEY (`id`)
 );
 
-ALTER TABLE `Event` ADD CONSTRAINT `Event_fk0` FOREIGN KEY (`rating_id`) REFERENCES `EventRating`(`id`);
-
-ALTER TABLE `Event` ADD CONSTRAINT `Event_fk1` FOREIGN KEY (`auditorium_id`) REFERENCES `Auditorium`(`id`);
+ALTER TABLE `Event` ADD CONSTRAINT `Event_fk0` FOREIGN KEY (`auditorium_id`) REFERENCES `Auditorium`(`id`);
 
 ALTER TABLE `Ticket` ADD CONSTRAINT `Ticket_fk0` FOREIGN KEY (`event_id`) REFERENCES `Event`(`id`);
 

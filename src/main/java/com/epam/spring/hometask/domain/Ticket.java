@@ -1,5 +1,7 @@
 package com.epam.spring.hometask.domain;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +18,10 @@ public class Ticket extends DomainObject
 {
 	@Column
 	private long seat;
+	@Column
+	private LocalDateTime created;
+	@Column
+	private LocalDateTime modified;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -27,6 +33,26 @@ public class Ticket extends DomainObject
 
 	public Ticket()
 	{
+	}
+
+	public void setCreated(final LocalDateTime created)
+	{
+		this.created = created;
+	}
+
+	public void setModified(final LocalDateTime modified)
+	{
+		this.modified = modified;
+	}
+
+	public LocalDateTime getCreated()
+	{
+		return created;
+	}
+
+	public LocalDateTime getModified()
+	{
+		return modified;
 	}
 
 	public void setEvent(final Event event)

@@ -1,5 +1,9 @@
 package com.epam.spring.hometask.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -58,11 +62,12 @@ public class TestTicketService
 		user.setFirstName(USER_FIRST_NAME);
 		user.setEmail(USER_EMAIL);
 		user_service.save(user);
-
 		source = new Ticket();
 		source.setSeat(SEAT);
 		source.setUser(user);
 		source.setEvent(event);
+		source.setCreated(LocalDateTime.of(LocalDate.now(), LocalTime.now().withNano(0)));
+
 		service.save(source);
 	}
 
@@ -77,6 +82,7 @@ public class TestTicketService
 		Assert.assertEquals(source.getSeat(), target.getSeat());
 		Assert.assertEquals(source.getUser(), target.getUser());
 		Assert.assertEquals(source.getEvent(), target.getEvent());
+		Assert.assertEquals(source.getCreated(), target.getCreated());
 
 		// update:
 		source.setSeat(SEAT_);
@@ -89,6 +95,7 @@ public class TestTicketService
 		Assert.assertEquals(source.getSeat(), target.getSeat());
 		Assert.assertEquals(source.getUser(), target.getUser());
 		Assert.assertEquals(source.getEvent(), target.getEvent());
+		Assert.assertEquals(source.getModified(), target.getModified());
 
 		// getAll():
 		Assert.assertEquals(++count_ticket, Integer.valueOf(service.getAll().size()));
@@ -104,5 +111,5 @@ public class TestTicketService
 	{
 		user_service.remove(user);
 		event_service.remove(event);
-	}
+}
 }

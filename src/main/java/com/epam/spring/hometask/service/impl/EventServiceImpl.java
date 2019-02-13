@@ -1,5 +1,8 @@
 package com.epam.spring.hometask.service.impl;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Collection;
 
 import javax.annotation.Resource;
@@ -25,6 +28,7 @@ public class EventServiceImpl implements EventService
 	{
 		if (object.getId() != null)
 		{
+			object.setModified(LocalDateTime.of(LocalDate.now(), LocalTime.now().withNano(0)));
 			dao.update(object);
 		}
 		else

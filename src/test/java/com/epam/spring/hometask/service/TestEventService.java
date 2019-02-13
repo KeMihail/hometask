@@ -1,5 +1,8 @@
 package com.epam.spring.hometask.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -47,6 +50,8 @@ public class TestEventService
 		source.setRating(EventRating.HIGH);
 		source.setBasePrice(PRICE);
 		source.setAuditorium(auditorium);
+		source.setCreated(LocalDateTime.of(LocalDate.now(), LocalTime.now().withNano(0)));
+
 		service.save(source);
 	}
 
@@ -61,6 +66,7 @@ public class TestEventService
 		Assert.assertEquals(source.getBasePrice(), target.getBasePrice(), 0);
 		Assert.assertEquals(source.getName(), target.getName());
 		Assert.assertEquals(source.getRating(), target.getRating());
+		Assert.assertEquals(source.getCreated(), target.getCreated());
 
 		// update:
 		source.setName(NAME_);
@@ -72,6 +78,7 @@ public class TestEventService
 		Assert.assertEquals(source.getBasePrice(), target.getBasePrice(), 0);
 		Assert.assertEquals(source.getName(), target.getName());
 		Assert.assertEquals(source.getRating(), target.getRating());
+		Assert.assertEquals(source.getModified(), target.getModified());
 
 		// getByName:
 		Assert.assertTrue(service.getByName(NAME).isEmpty());

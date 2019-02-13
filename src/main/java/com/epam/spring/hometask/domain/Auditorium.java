@@ -1,5 +1,6 @@
 package com.epam.spring.hometask.domain;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -26,12 +27,25 @@ public class Auditorium extends DomainObject
 
 	@Column
 	private Integer numberOfSeats;
+	@Column
+	private LocalDateTime created;
 
 	@OneToMany
 	private List<Event> events;
 
 	public Auditorium()
 	{
+
+	}
+
+	public LocalDateTime getCreated()
+	{
+		return created;
+	}
+
+	public void setCreated(final LocalDateTime created)
+	{
+		this.created = created;
 	}
 
 	public void setEvents(final List<Event> events)
