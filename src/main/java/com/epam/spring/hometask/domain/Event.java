@@ -5,13 +5,25 @@ import java.util.NavigableSet;
 import java.util.Objects;
 import java.util.TreeSet;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
+
+@Entity
+@Table
+@NamedQueries({ @NamedQuery(name = "event.getAll", query = "select e from Event e"),
+		@NamedQuery(name = "event.getByName", query = "select e from Event e where e.name =:name") })
 public class Event extends DomainObject
 {
+
+	@Column
 	private String name;
-
+	@Column
 	private double basePrice;
-
+	@Column
 	private EventRating rating;
 
 	public Event()
@@ -49,28 +61,37 @@ public class Event extends DomainObject
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 		return Objects.hash(name);
 	}
 
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+		{
 			return true;
 		}
-		if (obj == null) {
+		if (obj == null)
+		{
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
+		if (getClass() != obj.getClass())
+		{
 			return false;
 		}
 		Event other = (Event) obj;
-		if (name == null) {
-			if (other.name != null) {
+		if (name == null)
+		{
+			if (other.name != null)
+			{
 				return false;
 			}
-		} else if (!name.equals(other.name)) {
+		}
+		else if (!name.equals(other.name))
+		{
 			return false;
 		}
 		return true;
