@@ -1,5 +1,7 @@
 package com.epam.spring.hometask.service;
 
+import java.util.Arrays;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.epam.spring.hometask.domain.Ticket;
 import com.epam.spring.hometask.domain.User;
 
 
@@ -25,6 +28,7 @@ public class TestUserService
 	private static final String USER_LAST_NAME = "keiko";
 	private static final String USER_EMAIL = "mihaila@yandex.ru";
 	private static final String USER_EMAIL_ = "mihail@yandex.ru";
+	private static final Integer TICKET_SEAT = 10;
 
 	private static Integer count_user;
 
@@ -77,7 +81,7 @@ public class TestUserService
 		Assert.assertEquals(target.getLastName(), source.getLastName());
 
 		// getAll:
-		Assert.assertEquals(++count_user,Integer.valueOf(service.getAll().size()));
+		Assert.assertEquals(++count_user, Integer.valueOf(service.getAll().size()));
 
 		// remove:
 		service.remove(source);

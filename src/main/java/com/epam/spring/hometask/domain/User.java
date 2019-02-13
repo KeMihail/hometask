@@ -1,20 +1,24 @@
 package com.epam.spring.hometask.domain;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 @Entity
 @Table
 @NamedQueries({ @NamedQuery(name = "getUserByEmail", query = "select u from User u where u.email =:email"),
-		@NamedQuery(name = "user.getAll", query = "select u from User u")})
+		@NamedQuery(name = "user.getAll", query = "select u from User u") })
 public class User extends DomainObject
 {
 	@Column
@@ -23,23 +27,22 @@ public class User extends DomainObject
 	private String lastName;
 	@Column
 	private String email;
-
-	/*//@ManyToMany
-	private Set<Event> events = new HashSet<>();*/
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	List<Ticket> tickets;
 
 	public User()
 	{
 	}
 
-	/*public void setEvents(final Set<Event> events)
+	public void setTickets(final List<Ticket> tickets)
 	{
-		this.events = events;
+		this.tickets = tickets;
 	}
 
-	public Set<Event> getEvents()
+	public List<Ticket> getTickets()
 	{
-		return events;
-	}*/
+		return tickets;
+	}
 
 	public void setFirstName(final String firstName)
 	{

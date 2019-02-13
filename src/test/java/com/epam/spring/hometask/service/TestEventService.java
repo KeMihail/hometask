@@ -25,7 +25,7 @@ public class TestEventService
 	@Autowired
 	private EventService service;
 	@Autowired
-	private AuditoriumService aud_service;
+	private AuditoriumService auditorium_service;
 
 	private Event source;
 	private Integer count_event;
@@ -41,7 +41,7 @@ public class TestEventService
 		count_event = service.getAll().size();
 
 		// AuditoriumService not contains method save
-		auditorium = new ArrayList<Auditorium>(aud_service.getAll()).get(0);
+		auditorium = new ArrayList<Auditorium>(auditorium_service.getAll()).get(0);
 		source = new Event();
 		source.setName(NAME);
 		source.setRating(EventRating.HIGH);
