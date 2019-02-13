@@ -133,7 +133,7 @@ public class EventDaoImpl implements EventDao
 		{
 			session = sessionFactory.openSession();
 			final Transaction transaction = session.beginTransaction();
-			TypedQuery<Event> query = session.createQuery("select e from Event e where e.id =:id", Event.class);
+			TypedQuery<Event> query = session.createNamedQuery("event.getById", Event.class);
 			query.setParameter("id", id);
 			event = query.getSingleResult();
 			transaction.commit();

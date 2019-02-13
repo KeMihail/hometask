@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao
 		{
 			session = sessionFactory.openSession();
 			final Transaction transaction = session.beginTransaction();
-			TypedQuery<User> query = session.createQuery("select u from User u where u.email =: email", User.class);
+			TypedQuery<User> query = session.createNamedQuery("getUserByEmail", User.class);
 			query.setParameter("email", email);
 			user = query.getSingleResult();
 			transaction.commit();
@@ -156,7 +156,7 @@ public class UserDaoImpl implements UserDao
 		{
 			session = sessionFactory.openSession();
 			final Transaction transaction = session.beginTransaction();
-			TypedQuery<User> query = session.createNamedQuery("User.getAll", User.class);
+			TypedQuery<User> query = session.createNamedQuery("user.getAll", User.class);
 			users = query.getResultList();
 			transaction.commit();
 		}

@@ -1,4 +1,4 @@
-package com.epam.spring.hometask.service;
+package com.epam.spring.hometask.service.impl;
 
 import java.util.Collection;
 
@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import com.epam.spring.hometask.dao.EventDao;
 import com.epam.spring.hometask.domain.Event;
+import com.epam.spring.hometask.service.EventService;
 
 
 public class EventServiceImpl implements EventService

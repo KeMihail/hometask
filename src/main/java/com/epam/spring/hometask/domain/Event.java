@@ -15,7 +15,8 @@ import javax.persistence.Table;
 @Entity
 @Table
 @NamedQueries({ @NamedQuery(name = "event.getAll", query = "select e from Event e"),
-		@NamedQuery(name = "event.getByName", query = "select e from Event e where e.name =:name") })
+		@NamedQuery(name = "event.getByName", query = "select e from Event e where e.name =:name"),
+		@NamedQuery(name = "event.getById", query = "select e from Event e where e.id =:id") })
 public class Event extends DomainObject
 {
 

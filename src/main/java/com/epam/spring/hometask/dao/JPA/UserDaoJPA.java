@@ -56,6 +56,6 @@ public class UserDaoJPA implements UserDao
 	@Override
 	public Collection<User> getAll()
 	{
-		return em.createNamedQuery("User.getAll", User.class).getResultList();
+		return em.createNamedQuery("user.getAll", User.class).getResultList();
 	}
 }
