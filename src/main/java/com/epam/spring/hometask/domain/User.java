@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table
 @NamedQueries({ @NamedQuery(name = "getUserByEmail", query = "select u from User u where u.email =:email"),
-		@NamedQuery(name = "user.getAll", query = "select u from User u"),@NamedQuery(name = "user",query = "") })
+		@NamedQuery(name = "user.getAll", query = "select u from User u")})
 public class User extends DomainObject
 {
 	@Column

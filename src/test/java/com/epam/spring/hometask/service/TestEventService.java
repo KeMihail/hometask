@@ -1,5 +1,9 @@
 package com.epam.spring.hometask.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.epam.spring.hometask.domain.Auditorium;
 import com.epam.spring.hometask.domain.Event;
 import com.epam.spring.hometask.domain.EventRating;
 
@@ -19,8 +24,12 @@ public class TestEventService
 {
 	@Autowired
 	private EventService service;
+	@Autowired
+	private AuditoriumService aud_service;
+
 	private Event source;
 	private Integer count_event;
+	private Auditorium auditorium;
 
 	private static final String NAME = "film";
 	private static final String NAME_ = "kino";
@@ -30,10 +39,14 @@ public class TestEventService
 	public void setUp()
 	{
 		count_event = service.getAll().size();
+
+		// AuditoriumService not contains method save
+		auditorium = new ArrayList<Auditorium>(aud_service.getAll()).get(0);
 		source = new Event();
 		source.setName(NAME);
 		source.setRating(EventRating.HIGH);
 		source.setBasePrice(PRICE);
+		source.setAuditorium(auditorium);
 		service.save(source);
 	}
 
@@ -66,6 +79,8 @@ public class TestEventService
 
 		// getAll:
 		Assert.assertEquals(++count_event, Integer.valueOf(service.getAll().size()));
+
+		Assert.assertEquals(auditorium, source.getAuditorium());
 
 		// remove:
 		service.remove(source);

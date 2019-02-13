@@ -7,6 +7,7 @@ import java.util.TreeSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -27,8 +28,21 @@ public class Event extends DomainObject
 	@Column
 	private EventRating rating;
 
+	@ManyToOne
+	private Auditorium auditorium;
+
 	public Event()
 	{
+	}
+
+	public void setAuditorium(final Auditorium auditorium)
+	{
+		this.auditorium = auditorium;
+	}
+
+	public Auditorium getAuditorium()
+	{
+		return auditorium;
 	}
 
 	public void setName(final String name)
