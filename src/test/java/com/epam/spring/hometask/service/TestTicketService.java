@@ -104,6 +104,5 @@ public class TestTicketService
 	{
 		user_service.remove(user);
 		event_service.remove(event);
-		rootLogger.info("method tearDown");
 	}
 }
