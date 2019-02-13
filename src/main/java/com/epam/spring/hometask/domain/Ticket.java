@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-@NamedQuery(name = "ticket.getAll", query = "select t from Ticket as t")
+@NamedQuery(name = "ticket.getAll", query = "select t from Ticket t")
 public class Ticket extends DomainObject
 {
 	@Column

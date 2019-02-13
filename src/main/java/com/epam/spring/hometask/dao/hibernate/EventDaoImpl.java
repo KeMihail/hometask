@@ -9,27 +9,26 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import com.epam.spring.hometask.dao.UserDao;
-import com.epam.spring.hometask.domain.User;
+import com.epam.spring.hometask.dao.EventDao;
+import com.epam.spring.hometask.domain.Event;
 
 
-public class UserDaoImpl implements UserDao
+public class EventDaoImpl implements EventDao
 {
 	final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 
 	@Override
-	public User getUserByEmail(final String email)
+	public Collection<Event> getByName(final String name)
 	{
 		Session session = null;
-		User user = null;
-
+		Collection<Event> result = null;
 		try
 		{
 			session = sessionFactory.openSession();
 			final Transaction transaction = session.beginTransaction();
-			TypedQuery<User> query = session.createNamedQuery("getUserByEmail", User.class);
-			query.setParameter("email", email);
-			user = query.getSingleResult();
+			TypedQuery<Event> query = session.createNamedQuery("event.getByName", Event.class);
+			query.setParameter("name", name);
+			result = query.getResultList();
 			transaction.commit();
 		}
 		catch (Exception e)
@@ -42,14 +41,16 @@ public class UserDaoImpl implements UserDao
 			{
 				session.close();
 			}
-			return user;
+
+			return result;
 		}
 	}
 
 	@Override
-	public User save(final User object)
+	public Event save(final Event object)
 	{
 		Session session = null;
+
 		try
 		{
 			session = sessionFactory.openSession();
@@ -67,14 +68,16 @@ public class UserDaoImpl implements UserDao
 			{
 				session.close();
 			}
+
+			return null;
 		}
-		return object;
 	}
 
 	@Override
-	public void update(final User object)
+	public void update(final Event object)
 	{
 		Session session = null;
+
 		try
 		{
 			session = sessionFactory.openSession();
@@ -96,9 +99,10 @@ public class UserDaoImpl implements UserDao
 	}
 
 	@Override
-	public void remove(final User object)
+	public void remove(final Event object)
 	{
 		Session session = null;
+
 		try
 		{
 			session = sessionFactory.openSession();
@@ -119,17 +123,19 @@ public class UserDaoImpl implements UserDao
 		}
 	}
 
-
 	@Override
-	public User getById(final Integer id)
+	public Event getById(final Integer id)
 	{
 		Session session = null;
-		User user = null;
+		Event event = null;
+
 		try
 		{
 			session = sessionFactory.openSession();
 			final Transaction transaction = session.beginTransaction();
-			user = session.get(User.class, id);
+			TypedQuery<Event> query = session.createNamedQuery("event.getById", Event.class);
+			query.setParameter("id", id);
+			event = query.getSingleResult();
 			transaction.commit();
 		}
 		catch (Exception e)
@@ -143,21 +149,21 @@ public class UserDaoImpl implements UserDao
 				session.close();
 			}
 		}
-		return user;
+		return event;
 	}
 
 	@Override
-	public Collection<User> getAll()
+	public Collection<Event> getAll()
 	{
 		Session session = null;
-		Collection<User> users = null;
+		Collection<Event> result = null;
 
 		try
 		{
 			session = sessionFactory.openSession();
 			final Transaction transaction = session.beginTransaction();
-			TypedQuery<User> query = session.createNamedQuery("user.getAll", User.class);
-			users = query.getResultList();
+			TypedQuery<Event> query = session.createNamedQuery("event.getAll", Event.class);
+			result = query.getResultList();
 			transaction.commit();
 		}
 		catch (Exception e)
@@ -170,7 +176,8 @@ public class UserDaoImpl implements UserDao
 			{
 				session.close();
 			}
+
 		}
-		return users;
+		return result;
 	}
 }

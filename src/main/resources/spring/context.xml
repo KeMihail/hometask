@@ -10,15 +10,18 @@
     <bean id="auditoriumDaoImpl" class="com.epam.spring.hometask.dao.hibernate.AuditoriumDaoImpl"/>
     <bean id="userDaoImpl" class="com.epam.spring.hometask.dao.hibernate.UserDaoImpl"/>
     <bean id="ticketDaoImpl" class="com.epam.spring.hometask.dao.hibernate.TicketDaoImpl"/>
-    <bean id="ticketDaoJPA" class="com.epam.spring.hometask.dao.JPA.TicketDaoJPA"/>
+    <bean id="eventDaoImpl" class="com.epam.spring.hometask.dao.hibernate.EventDaoImpl"/>
 
     <bean id="auditoriumDaoJPA" class="com.epam.spring.hometask.dao.JPA.AuditoriumDaoJPA"/>
     <bean id="userDaoJPA" class="com.epam.spring.hometask.dao.JPA.UserDaoJPA"/>
+    <bean id="ticketDaoJPA" class="com.epam.spring.hometask.dao.JPA.TicketDaoJPA"/>
+    <bean id="eventDaoJPA" class="com.epam.spring.hometask.dao.JPA.EventDaoJPA"/>
 
 
     <!--service:-->
     <bean id="auditoriumServiceImpl" class="com.epam.spring.hometask.service.impl.AuditoriumServiceImpl"/>
     <bean id="userServiceImpl" class="com.epam.spring.hometask.service.impl.UserServiceImpl"/>
     <bean id="ticketServiceImpl" class="com.epam.spring.hometask.service.impl.TicketServiceImpl"/>
+    <bean id="eventServiceImpl" class="com.epam.spring.hometask.service.impl.EventServiceImpl"/>
 
 </beans>
