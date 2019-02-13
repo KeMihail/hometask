@@ -1,5 +1,6 @@
 package com.epam.spring.hometask.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.epam.spring.hometask.domain.DomainObject;
@@ -12,9 +13,8 @@ public interface AbstractDomainObjectService<T extends DomainObject>
 
 	void remove(@NotNull final T object);
 
-	void update(@NotNull final T object);
-
 	T getById(@NotNull final Integer id);
 
-	@NotNull List<T> getAll();
+	@NotNull
+	Collection<T> getAll();
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.epam.spring.hometask.dao.UserDao;
 import com.epam.spring.hometask.domain.User;
 import com.epam.spring.hometask.service.UserService;
@@ -12,7 +14,7 @@ import com.epam.spring.hometask.service.UserService;
 
 public class UserServiceImpl implements UserService
 {
-	@Resource(name = "auditoriumDaoJPA")
+	@Resource(name = "userDaoJPA")
 	private UserDao dao;
 
 	@Override
@@ -24,7 +26,8 @@ public class UserServiceImpl implements UserService
 	@Override
 	public User save(final User object)
 	{
-		if (object.getId() != null){
+		if (object.getId() != null)
+		{
 			dao.update(object);
 		}
 		object.setId(dao.save(object).getId());

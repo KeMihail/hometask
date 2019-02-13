@@ -12,10 +12,14 @@ import org.springframework.stereotype.Service;
 import com.epam.spring.hometask.dao.AuditoriumDao;
 import com.epam.spring.hometask.domain.Auditorium;
 
-@Repository
+
 public class AuditoriumDaoJPA implements AuditoriumDao
 {
 	private EntityManager em = Persistence.createEntityManagerFactory("task").createEntityManager();
+
+	public AuditoriumDaoJPA()
+	{
+	}
 
 	@Override
 	public Auditorium getById(final Integer id)

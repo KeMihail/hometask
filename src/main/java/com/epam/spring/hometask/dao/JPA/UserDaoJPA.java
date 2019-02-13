@@ -6,9 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Repository;
+
 import com.epam.spring.hometask.dao.UserDao;
 import com.epam.spring.hometask.domain.User;
-
 
 public class UserDaoJPA implements UserDao
 {
