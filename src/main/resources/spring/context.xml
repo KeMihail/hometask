@@ -6,11 +6,17 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-    <bean id="auditoriumDao" class="com.epam.spring.hometask.dao.hibernate.AuditoriumDaoImpl"/>
+    <!--  dao: -->
+    <bean id="auditoriumDaoImpl" class="com.epam.spring.hometask.dao.hibernate.AuditoriumDaoImpl"/>
+    <bean id="userDaoImpl" class="com.epam.spring.hometask.dao.hibernate.UserDaoImpl"/>
+
+    <bean id="auditoriumDaoJPA" class="com.epam.spring.hometask.dao.JPA.AuditoriumDaoJPA"/>
+    <bean id="userDaoJPA" class="com.epam.spring.hometask.dao.JPA.UserDaoJPA"/>
 
 
-    <context:component-scan base-package="com.epam.spring.hometask.dao.JPA"/>
-    <context:component-scan base-package="com.epam.spring.hometask.service.impl"/>
+    <!--service:-->
+    <bean id="auditoriumServiceImpl" class="com.epam.spring.hometask.service.impl.AuditoriumServiceImpl"/>
+    <bean id="userServiceImpl" class="com.epam.spring.hometask.service.impl.UserServiceImpl"/>
 
 
 </beans>

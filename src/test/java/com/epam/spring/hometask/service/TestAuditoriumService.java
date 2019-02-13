@@ -2,9 +2,6 @@ package com.epam.spring.hometask.service;
 
 import java.util.Collection;
 
-import javax.annotation.Resource;
-
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -64,10 +61,5 @@ public class TestAuditoriumService
 
 		Assert.assertNotNull(auditoriums);
 		Assert.assertEquals(Integer.valueOf(auditoriums.size()),COUNT_AUD);
-	}
-
-	@After
-	public void tearDown(){
-
 	}
 }

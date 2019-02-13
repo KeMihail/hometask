@@ -2,11 +2,13 @@ package com.epam.spring.hometask.domain;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -22,6 +24,9 @@ public class Auditorium extends DomainObject
 	@Column
 	private Integer numberOfSeats;
 
+	/*@ManyToOne
+	private Set<Event> events = new HashSet<Event>();*/
+
 	public Auditorium()
 	{
 	}
@@ -35,6 +40,16 @@ public class Auditorium extends DomainObject
 	{
 		this.numberOfSeats = numberOfSeats;
 	}
+
+	/*public void setEvents(final Set<Event> events)
+	{
+		this.events = events;
+	}
+
+	public Set<Event> getEvents()
+	{
+		return events;
+	}*/
 
 	public String getName()
 	{

@@ -1,19 +1,45 @@
 package com.epam.spring.hometask.domain;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
+@Entity
+@Table
+@NamedQueries({ @NamedQuery(name = "getUserByEmail", query = "select u from User as u where u.email =:email"),
+		@NamedQuery(name = "User.getAll", query = "select u from User as u") })
 public class User extends DomainObject
 {
+	@Column
 	private String firstName;
-
+	@Column
 	private String lastName;
-
+	@Column
 	private String email;
+
+	/*//@ManyToMany
+	private Set<Event> events = new HashSet<>();*/
 
 	public User()
 	{
 	}
+
+	/*public void setEvents(final Set<Event> events)
+	{
+		this.events = events;
+	}
+
+	public Set<Event> getEvents()
+	{
+		return events;
+	}*/
 
 	public void setFirstName(final String firstName)
 	{
@@ -46,41 +72,58 @@ public class User extends DomainObject
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 		return Objects.hash(firstName, lastName, email);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+		{
 			return true;
 		}
-		if (obj == null) {
+		if (obj == null)
+		{
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
+		if (getClass() != obj.getClass())
+		{
 			return false;
 		}
 		User other = (User) obj;
-		if (email == null) {
-			if (other.email != null) {
+		if (email == null)
+		{
+			if (other.email != null)
+			{
 				return false;
 			}
-		} else if (!email.equals(other.email)) {
+		}
+		else if (!email.equals(other.email))
+		{
 			return false;
 		}
-		if (firstName == null) {
-			if (other.firstName != null) {
+		if (firstName == null)
+		{
+			if (other.firstName != null)
+			{
 				return false;
 			}
-		} else if (!firstName.equals(other.firstName)) {
+		}
+		else if (!firstName.equals(other.firstName))
+		{
 			return false;
 		}
-		if (lastName == null) {
-			if (other.lastName != null) {
+		if (lastName == null)
+		{
+			if (other.lastName != null)
+			{
 				return false;
 			}
-		} else if (!lastName.equals(other.lastName)) {
+		}
+		else if (!lastName.equals(other.lastName))
+		{
 			return false;
 		}
 		return true;

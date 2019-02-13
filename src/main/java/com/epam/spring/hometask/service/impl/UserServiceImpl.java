@@ -12,7 +12,7 @@ import com.epam.spring.hometask.service.UserService;
 
 public class UserServiceImpl implements UserService
 {
-	@Resource(name = "auditoriumDaoJPA")
+	@Resource(name = "userDaoJPA")
 	private UserDao dao;
 
 	@Override
@@ -24,10 +24,14 @@ public class UserServiceImpl implements UserService
 	@Override
 	public User save(final User object)
 	{
-		if (object.getId() != null){
+		if (object.getId() != null)
+		{
 			dao.update(object);
 		}
-		object.setId(dao.save(object).getId());
+		else
+		{
+			object.setId(dao.save(object).getId());
+		}
 
 		return object;
 	}
@@ -35,7 +39,10 @@ public class UserServiceImpl implements UserService
 	@Override
 	public void remove(final User object)
 	{
-
+		if (dao.getById(object.getId()) != null)
+		{
+			dao.remove(object);
+		}
 	}
 
 	@Override
