@@ -38,13 +38,48 @@ public class TestUserService
 
 	@Test
 	public void test(){
+
+		// getById:
 		User target = service.getById(source.getId());
 
 		Assert.assertNotNull(target);
+		Assert.assertEquals(target.getId(), source.getId());
+		Assert.assertEquals(target.getEmail(), source.getEmail());
+		Assert.assertEquals(target.getFirstName(), source.getFirstName());
+		Assert.assertEquals(target.getLastName(), source.getLastName());
+
+		// update:
+		source.setEmail(USER_EMAIL_);
+
+		final Integer id = source.getId();
+		service.save(source);
+		final Integer id_ = source.getId();
+		Assert.assertEquals(id,id_);
+
+		target = service.getById(source.getId());
+
+		Assert.assertNotNull(target);
+		Assert.assertEquals(target.getId(), source.getId());
+		Assert.assertEquals(target.getEmail(), source.getEmail());
+		Assert.assertEquals(target.getFirstName(), source.getFirstName());
+		Assert.assertEquals(target.getLastName(), source.getLastName());
+
+		// getUserByEmail:
+		target = service.getUserByEmail(USER_EMAIL_);
+		Assert.assertNotNull(target);
+		Assert.assertEquals(target.getId(), source.getId());
+		Assert.assertEquals(target.getEmail(), source.getEmail());
+		Assert.assertEquals(target.getFirstName(), source.getFirstName());
+		Assert.assertEquals(target.getLastName(), source.getLastName());
+
+		// remove:
+		service.remove(source);
+		Assert.assertNull(service.getById(source.getId()));
+
 	}
 
 	@After
 	public void tearDown(){
-
+		service.remove(source);
 	}
 }

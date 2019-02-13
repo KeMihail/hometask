@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Service;
-
 import com.epam.spring.hometask.dao.UserDao;
 import com.epam.spring.hometask.domain.User;
 import com.epam.spring.hometask.service.UserService;
@@ -30,7 +28,10 @@ public class UserServiceImpl implements UserService
 		{
 			dao.update(object);
 		}
-		object.setId(dao.save(object).getId());
+		else
+		{
+			object.setId(dao.save(object).getId());
+		}
 
 		return object;
 	}
@@ -38,7 +39,10 @@ public class UserServiceImpl implements UserService
 	@Override
 	public void remove(final User object)
 	{
-
+		if (dao.getById(object.getId()) != null)
+		{
+			dao.remove(object);
+		}
 	}
 
 	@Override
